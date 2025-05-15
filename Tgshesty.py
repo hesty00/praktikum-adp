@@ -1,94 +1,63 @@
-print("Tugas ADP : pemesanan makanan online")
+#tgs praktikum modul aray
+print("")
+data_mahasiswa =[]
+while True :
+    print("-----MANAJEMEN NILAI MAHASISWA-----")
+    print("1.Tambah Data")
+    print("2.Hapus Data")
+    print("3.Tampilkan Data")
+    print("4.Keluar")
+    print("")
+    pilihan = int(input("Pilih {1/2/3/4} :"))
 
-#TAMPILAN 1
-#DAFTAR PAKET MAKANAN(daftar paket & harga makanan)
+    if pilihan == 1:
+        nama= input("Masukan Nama : ")
+        nilai= input("Masukan nilai: ")
+        nilai=float(nilai)
+        nomor= input("Masukan Nomor Mahasiswa: ")
+        data_mahasiswa.append([nama,nilai,nomor])
+        print("Data Mahasiswa Berhasil Ditambahkan")
+        print(data_mahasiswa)
 
-print('                     DAFTAR MENU                       ')
-print('_'*56) #tutup atas
-print('| Paket |               Isi             |    Harga     |')
-print('_'*56) 
-print('|   A   |    Ikan Bakar & Teh           |   Rp.22.000  |')
-print('|   B   |    Ikan Goreng & Teh          |   Rp.22.000  |')
-print('|   C   |    Nasi Goreng & Lemon Tea    |   Rp.20.000  |')
-print('|   D   |    Sate Ayam & Kopi           |   Rp.23.000  |')
-print('|   E   |    Bakmi Rebus & Es Campur    |   Rp.23.000  |')
-print('_'*56) #tutup bawah
-print()
-print()
-#TAMPILAN 2
-#1 INPUT DATA DIRI(nama,no telp,alamat)
+    elif pilihan ==2:
+        nomor= input("Masukan Nomor Mahasiswa yang Mau Dihapus: ")
+        ditemukan = False
+        for i in range (len(data_mahasiswa)) :
+            if data_mahasiswa[i][2]==nomor:
+                del data_mahasiswa[i]
+                print("Data Mahasiswa Berhasil Dihapus")
+                print(data_mahasiswa)
+                ditemukan = True
+                break
+            else :
+                print("Data Mahasiswa Tidak Ditemukan")
 
-print("DATA DIRI PELANNGAN")
-nama = input("Nama Anda : ")
-no_telfon = input("Nomor Telfon Anda : ")
-alamat = input("Alamat Pengiriman Anda : ")
-print()
+    elif pilihan == 3:
+        if len(data_mahasiswa) ==0:
+            print("Data Mahasiswa Belum Dimasukkan")
+        else:
+            for i in range(len(data_mahasiswa)):
+                for j in range(i+1, len(data_mahasiswa)):
+                    if data_mahasiswa[i][2] < data_mahasiswa[j][2]:
+                        data = data_mahasiswa[i]
+                        data_mahasiswa[i]=data_mahasiswa[j]
+                        data_mahasiswa[j]= data
+            print(" ")
+            print("\n=== DAFTAR MAHASISWA ===")
+            print(f"{'Nomor. Mahasiswa':<15} {'Nama':<20} {'Nilai':<10}")
+            
+            for mhs in data_mahasiswa:
+                print(f"{mhs[2]:<15} {mhs[0]:<20} {mhs[1]:<10.2f}")
 
-#2 MEMILIH JUMLAH & PAKET(ketentuan biaya)
-#  a.pajak 10% dari total harga
-print("Setiap Pembelian Akan Mendapat Pajak 10%")
-Beli = input("PILIH PAKET MENU (A, B, C, D, E),  :")
-Jumlah_item = int(input("Jumlah Pesanan :"))
-if Beli == "A" :
-   Menu = ("Ikan Bakar & Teh")
-   Harga_per_item = 22000
-elif Beli == "B":
-   Menu = ("Ikan Goreng & Teh")
-   Harga_per_item = 22000
-elif Beli == "C":
-   Menu = ("Nasi Goreng & Lemon Tea")
-   Harga_per_item = 20000
-elif Beli == "D":
-   Menu = ("Sate Ayam & Kopi")
-   Harga_per_item = 23000
-elif Beli == "E":
-   Menu = ("Bakmi Rebus & Es Campur ")
-   Harga_per_item = 23000
-else :
-   Harga_per_item = print("pilihan paket tidak tersedia")
-print()
-Total_Harga = Jumlah_item*Harga_per_item 
-Pajak = Total_Harga * 0.10
-Bayar = Total_Harga + Pajak 
-print(f"Harga Makanan Yang Harus Di Bayar : Rp {Bayar}")
-
-#  b.biaya pengiriman
-#    total harga < Rp.150.000 biaya pengiriman Rp.25.000
-#    total harga>=Rp.150.000 biaya pengiriman Rp.0
-print()
-print()
-print("TOTAL PEMBAYARAN & BIAYA PENGIRIMAN")
-if Bayar < 150000 :
-   biaya_pengiriman = 25000
-   Total = Bayar + biaya_pengiriman
-   print(Bayar, "Total Harga Yang Harus Di Bayar : Rp {Total}")
-else :
-   biaya_pengiriman = 0
-   Total = Bayar + biaya_pengiriman
-   print(Bayar, "Total Harga Yang Harus Di Bayar : Rp {Total}")
-print()
-TOTAL_AKHIR = biaya_pengiriman + Pajak + Total_Harga,
-print()
-print()
-
-#3 MENAMPILKAN STRUK PEMBAYARAN
-#detail pembayaran
+           
+            
+    elif pilihan ==4:
+        print("Program Selesai")
+    else :
+        print("Pilihan Tidak Valid")
 
 
-print('               STRUK PEMBAYARAN               ')
-print("Nama Anda                  :",nama)
-print("Nomor Telepon Anda         :", no_telfon)
-print("Alamat Anda                :", alamat)
-print()
-print("DETAIL PESANAN , "
-"\nPaket                      :", Beli ,"\nDengan Menu                :", Menu)
-print("Jumlah Pesanan Anda        :", Jumlah_item)
-print()
-print("Total Harga                :", Total_Harga)
-print("Pajak                      :", Pajak)
-print("Biaya Pengiriman           :", biaya_pengiriman)
-print()
-print("TOTAL AKHIR                :", TOTAL_AKHIR)
-print()
+
+
 
 
